@@ -27,7 +27,11 @@ while True:
             pygame.quit()
             sys.exit()
 
+<<<<<<< HEAD
     screen.fill("blue")
+=======
+    screen.fill("black")
+>>>>>>> a64ba96 (initㄉ)
     level.run()
     debug(level.player.dir)
 
