@@ -3,20 +3,12 @@ from setting import *
 
 
 class Tile(pygame.sprite.Sprite):
-<<<<<<< HEAD
-    def __init__(self, pos, groups):
-        super().__init__(groups)
-        # image
-        self.image = pygame.Surface((64, 64))
-        self.image.fill("green")
-=======
     def __init__(self, pos, groups, sprite_type, surface=pygame.Surface((TILE_SIZE, TILE_SIZE))):
         super().__init__(groups)
         self.sprite_type = sprite_type
         # image
         self.image = surface
-        self.image.fill("red")
->>>>>>> a64ba96 (initㄉ)
+        self.image.fill("green")
         # rect
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = self.rect.inflate(0, -10)
@@ -26,18 +18,10 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, o_sprites):
         super().__init__(groups)
         # image
-<<<<<<< HEAD
-        self.image = pygame.Surface((64, 64))
-        self.image.fill("yellow")
-        # rect
-        self.rect = self.image.get_rect(topleft=pos)
-        self.hitbox = self.rect.inflate(0, -12)
-=======
         self.image = pygame.image.load("image/player.png").convert_alpha()
         # rect
         self.rect = self.image.get_rect(topleft=pos)
-        self.hitbox = self.rect.inflate(0, -26)
->>>>>>> a64ba96 (initㄉ)
+        self.hitbox = self.rect.inflate(0, -12)
         # moving
         self.dir = pygame.math.Vector2()
         self.speed = 5
