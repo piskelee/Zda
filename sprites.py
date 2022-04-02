@@ -44,6 +44,9 @@ class Player(pygame.sprite.Sprite):
             self.dir.y = -1
         else:
             self.dir.y = 0
+        # attack
+        if keys[pygame.K_SPACE]:
+            print("attack!!")
 
     def collision(self, dir):
         if dir == "h":
