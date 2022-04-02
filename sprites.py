@@ -11,17 +11,17 @@ class Tile(pygame.sprite.Sprite):
         self.image.fill("green")
         # rect
         self.rect = self.image.get_rect(topleft=pos)
-        self.hitbox = self.rect.inflate(0, -10)
+        self.hitbox = self.rect.inflate(0, -12)
 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, o_sprites):
         super().__init__(groups)
         # image
-        self.image = pygame.image.load("image/player.png").convert_alpha()
+        self.image = pygame.image.load("image/player/player.png").convert_alpha()
         # rect
         self.rect = self.image.get_rect(topleft=pos)
-        self.hitbox = self.rect.inflate(0, -12)
+        self.hitbox = self.rect.inflate(0, -26)
         # moving
         self.dir = pygame.math.Vector2()
         self.speed = 5

@@ -18,8 +18,8 @@ class Level:
 
     def create_map(self):
         layouts = {
-            "blocked": import_csv_layout("image/WORLD_MAP1_blocked.csv"),
-            "road": import_csv_layout("image/WORLD_MAP1_road.csv")
+            "blocked": import_csv_layout("image/map/WORLD_MAP1_blocked.csv"),
+            "road": import_csv_layout("image/map/WORLD_MAP1_road.csv")
         }
         for style, layout in layouts.items():
             for row_index, row in enumerate(layout):
@@ -36,7 +36,7 @@ class Level:
         #         if col == "p":
         #             self.player = Player((x, y), [self.v_sprites], self.o_sprite)
 
-        self.player = Player((64, 64), [self.v_sprites], self.o_sprite)
+        self.player = Player((160, 256), [self.v_sprites], self.o_sprite)
 
     def run(self):
         self.v_sprites.camera_draw(self.player)
@@ -54,7 +54,7 @@ class YCamera(pygame.sprite.Group):
         self.offset = pygame.math.Vector2()
 
         # draw floor
-        self.floor = pygame.image.load("image/WORLD_MAP1.png").convert()
+        self.floor = pygame.image.load("image/map/WORLD_MAP1.png").convert()
         self.floor_rect = self.floor.get_rect(topleft=(0, 0))
 
     def camera_draw(self, player):
