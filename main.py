@@ -3,21 +3,30 @@ from level import Level
 from setting import *
 from tools import *
 
-pygame.init()
-pygame.display.set_caption(TITLE)
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-clock = pygame.time.Clock()
 
-# join obj
-level = Level()
+class Game:
+    def __init__(self):
+        pygame.init()
+        pygame.display.set_caption(TITLE)
+        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        self.clock = pygame.time.Clock()
 
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-    screen.fill("black")
-    # join game_world
-    level.run()
-    pygame.display.update()
-    clock.tick(FPS)
+        # join obj
+        self.level = Level()
+
+    def update(self):
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+            self.screen.fill("black")
+            # join game_world
+            self.level.run()
+            pygame.display.update()
+            self.clock.tick(FPS)
+
+
+if __name__ == "__main__":
+    game = Game()
+    game.update()

@@ -24,13 +24,9 @@ class Player(pygame.sprite.Sprite):
         self.hitbox = self.rect.inflate(0, -26)
         # moving
         self.dir = pygame.math.Vector2()
-        self.speed = 5
-        # groupy
+        self.speed = 2
+
         self.o_sprites = o_sprites
-        # attack
-        self.attacking = False
-        self.attack_cooldown = 800
-        self.attack_time = None
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -48,22 +44,6 @@ class Player(pygame.sprite.Sprite):
             self.dir.y = -1
         else:
             self.dir.y = 0
-        # attack
-        if keys[pygame.K_SPACE] and not self.attacking:
-            self.attacking = True
-            self.attack_time = pygame.time.get_ticks()
-            print("hit")
-        # magic
-        if keys[pygame.K_LCTRL] and not self.attacking:
-            self.attacking = True
-            self.attack_time = pygame.time.get_ticks()
-            print("magic")
-
-    def cooldown(self):
-        current_time = pygame.time.get_ticks()
-        if self.attacking:
-            if current_time - self.attack_time >= self.attack_cooldown:
-                self.attacking = False
 
     def collision(self, dir):
         if dir == "h":
@@ -95,4 +75,3 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         self.input()
         self.move(self.speed)
-        self.cooldown()
