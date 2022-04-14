@@ -1,16 +1,6 @@
 import pygame
 from setting import *
-
-
-class SpriteSheet:
-    def __init__(self, img):
-        self.img = img
-
-    def get_image(self, frame_x, frame_y, img_width, img_height, scale):
-        img = pygame.Surface((img_width, img_height)).convert_alpha()
-        img.blit(self.img, (0, 0), ((frame_x * img_width), (frame_y * img_height), img_width, img_height))
-        img = pygame.transform.scale(img, (img_width * scale, img_height * scale))
-        return img
+from tools import get_image
 
 
 class Tile(pygame.sprite.Sprite):
@@ -29,12 +19,18 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, o_sprites):
         super().__init__(groups)
         # image
-        self.image = pygame.image.load("image/player/player.png").convert_alpha()
-        self.dir_left = []
-        self.dir_right = []
-        self.dir_up = []
-        self.dir_down = []
-        self.dir_idel = []
+        self.dir_left_images = []
+        self.dir_right_images = []
+        self.dir_up_images = []
+        self.dir_down_images = []
+        self.dir_idel_images = []
+
+        players_image = pygame.image.load("image/player/cat.png").convert_alpha()
+        self.image = get_image(players_image, 0, 0, 64, 64, 0.5)
+
+        # status
+        self.status = "down"
+
         # rect
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = self.rect.inflate(0, -26)
@@ -44,6 +40,10 @@ class Player(pygame.sprite.Sprite):
 
         self.o_sprites = o_sprites
 
+    def get_status(self):
+        if self.dir.x == 0 and self.dir.y == 0:
+            pass
+        
     def input(self):
         keys = pygame.key.get_pressed()
         # x axis
@@ -90,4 +90,5 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         self.input()
+        self.get_status()
         self.move(self.speed)

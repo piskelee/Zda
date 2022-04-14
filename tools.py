@@ -20,3 +20,10 @@ def import_folder(path):
             img_surf = pygame.image.load(full_path).convert_alpha()
             surface_list.append(img_surf)
     return surface_list
+
+
+def get_image(file, frame_x, frame_y, img_width, img_height, scale):
+    img = pygame.Surface((img_width, img_height)).convert_alpha()
+    img.blit(file, (0, 0), ((frame_x * img_width), (frame_y * img_height), img_width, img_height))
+    img = pygame.transform.scale(img, (img_width * scale, img_height * scale))
+    return img
