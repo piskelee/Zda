@@ -1,4 +1,5 @@
 import sys
+from debug import debug
 from level import Level
 from setting import *
 from tools import *
@@ -23,6 +24,7 @@ class Game:
             self.screen.fill("black")
             # join game_world
             self.level.run()
+            debug(self.level.player.dir)
             pygame.display.update()
             self.clock.tick(FPS)
 
