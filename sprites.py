@@ -2,6 +2,17 @@ import pygame
 from setting import *
 
 
+class SpriteSheet:
+    def __init__(self, img):
+        self.img = img
+
+    def get_image(self, frame_x, frame_y, img_width, img_height, scale):
+        img = pygame.Surface((img_width, img_height)).convert_alpha()
+        img.blit(self.img, (0, 0), ((frame_x * img_width), (frame_y * img_height), img_width, img_height))
+        img = pygame.transform.scale(img, (img_width * scale, img_height * scale))
+        return img
+
+
 class Tile(pygame.sprite.Sprite):
     def __init__(self, pos, groups, sprite_type, surface=pygame.Surface((TILE_SIZE, TILE_SIZE))):
         super().__init__(groups)
@@ -19,6 +30,11 @@ class Player(pygame.sprite.Sprite):
         super().__init__(groups)
         # image
         self.image = pygame.image.load("image/player/player.png").convert_alpha()
+        self.dir_left = []
+        self.dir_right = []
+        self.dir_up = []
+        self.dir_down = []
+        self.dir_idel = []
         # rect
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = self.rect.inflate(0, -26)
